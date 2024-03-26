@@ -24,10 +24,12 @@ docker compose exec superset bash
 
 ```
 superset export_datasources
+superset export_dashboards
 ```
 
 バックアップを復元する。
 
 ```
 superset import_datasources -p <path / filename>
+superset import_dashboards -p <path / filename>
 ```
