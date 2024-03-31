@@ -14,22 +14,16 @@ docker compose -f docker-compose-non-dev.yml up
 
 ## Backup
 
-コンテナに入る。
-
-```
-docker compose exec superset bash
-```
-
 バックアップを取る。
 
 ```
-superset export_datasources
-superset export_dashboards
+docker compose exec superset superset export_datasources -f /app/superset_home/(date +"%Y-%m-%d-%H-%M-%S")_dataset.zip
+docker compose exec superset export_dashboards -f /app/superset_home/(date +"%Y-%m-%d-%H-%M-%S")_dashboards.zip
 ```
 
 バックアップを復元する。
 
 ```
-superset import_datasources -p <path / filename>
-superset import_dashboards -p <path / filename>
+docker compose exec superset import_datasources -p <path / filename>
+docker compose exec superset import_dashboards -p <path / filename>
 ```
